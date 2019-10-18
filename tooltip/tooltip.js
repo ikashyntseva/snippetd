@@ -49,14 +49,10 @@ function Tooltip() {
     this.show();
   };
 
-  return tooltip;
-}
-
-function createTooltip() {
-  const tooltip = new Tooltip();
-  const waitForElementsWithTooltip = setInterval(function() {
+  const waitForElementsWithTooltip = setInterval(() => {
     if (document.querySelectorAll("[data-tooltip]").length) {
       const elementsWithTooltip = document.querySelectorAll("[data-tooltip]");
+
       Array.from(elementsWithTooltip).forEach(el => {
         el.addEventListener("mouseover", ev => {
           tooltip.init(ev.target);
@@ -68,6 +64,8 @@ function createTooltip() {
       clearInterval(waitForElementsWithTooltip);
     }
   }, 100);
+
+  return tooltip;
 }
 
-createTooltip();
+new Tooltip();
