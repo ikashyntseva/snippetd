@@ -1,25 +1,15 @@
 function Tooltip() {
-  const template = `<div class='tooltip'>
-    <div class='tooltip-content'>Tooltip Content</div>
-</div>`;
-  document.body.insertAdjacentHTML("afterbegin", template);
+  const tooltip = create();
 
-  this.tooltip = document.querySelector(".tooltip");
-  this.tooltip.setTooltipPosition = position => {
-    this.tooltip.style.top = position.top;
-    this.tooltip.style.left = position.left;
-  };
-  this.tooltip.setContent = text => {
-    this.tooltip.querySelector(".tooltip-content").textContent = text;
-  };
+  function create() {
+    const div = document.createElement("div");
 
-  this.tooltip.show = () => this.tooltip.classList.add("shown");
-  this.tooltip.hide = () => this.tooltip.classList.remove("shown");
+    div.innerHTML = `<div class='tooltip-content'></div>`;
+    div.classList.add("tooltip");
 
-  return this.tooltip;
-}
+    return document.body.appendChild(div);
+  }
 
-function createTooltip() {
   function calculatePosition(el) {
     const top = `${el.offsetTop +
       el.offsetHeight / 2 -
@@ -32,16 +22,44 @@ function createTooltip() {
     };
   }
 
+  tooltip.setTooltipPosition = function setTooltipPosition(el) {
+    const { top, left } = calculatePosition(el);
+
+    this.style.top = top;
+    this.style.left = left;
+  };
+
+  tooltip.setContent = function setContent(el) {
+    const text = el.dataset.tooltip || "";
+
+    this.querySelector(".tooltip-content").textContent = text;
+  };
+
+  tooltip.show = function show() {
+    this.classList.add("shown");
+  };
+
+  tooltip.hide = function hide() {
+    this.classList.remove("shown");
+  };
+
+  tooltip.init = function init(el) {
+    this.setContent(el);
+    this.setTooltipPosition(el);
+    this.show();
+  };
+
+  return tooltip;
+}
+
+function createTooltip() {
   const tooltip = new Tooltip();
   const waitForElementsWithTooltip = setInterval(function() {
     if (document.querySelectorAll("[data-tooltip]").length) {
       const elementsWithTooltip = document.querySelectorAll("[data-tooltip]");
       Array.from(elementsWithTooltip).forEach(el => {
         el.addEventListener("mouseover", ev => {
-          const position = calculatePosition(ev.target);
-          tooltip.setContent(ev.target.dataset.tooltip);
-          tooltip.show();
-          tooltip.setTooltipPosition(position);
+          tooltip.init(ev.target);
         });
         el.addEventListener("mouseout", () => {
           tooltip.hide();
