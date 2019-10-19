@@ -46,7 +46,7 @@ function Tooltip(el) {
   tooltip.init = function init(el) {
     this.setContent(el);
     this.setTooltipPosition(el);
-    this.show();
+    this.show(); // show.call(this);
   };
 
   tooltip.init(el);
