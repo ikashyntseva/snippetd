@@ -1,4 +1,4 @@
-function Tooltip() {
+function Tooltip(el) {
   const tooltip = create();
 
   function create() {
@@ -49,23 +49,24 @@ function Tooltip() {
     this.show();
   };
 
-  const waitForElementsWithTooltip = setInterval(() => {
-    if (document.querySelectorAll("[data-tooltip]").length) {
-      const elementsWithTooltip = document.querySelectorAll("[data-tooltip]");
-
-      Array.from(elementsWithTooltip).forEach(el => {
-        el.addEventListener("mouseover", ev => {
-          tooltip.init(ev.target);
-        });
-        el.addEventListener("mouseout", () => {
-          tooltip.hide();
-        });
-      });
-      clearInterval(waitForElementsWithTooltip);
-    }
-  }, 100);
+  tooltip.init(el);
 
   return tooltip;
 }
 
-new Tooltip();
+const waitForElementsWithTooltip = setInterval(() => {
+  if (document.querySelectorAll("[data-tooltip]").length) {
+    const elementsWithTooltip = document.querySelectorAll("[data-tooltip]");
+    let tooltip;
+
+    Array.from(elementsWithTooltip).forEach(el => {
+      el.addEventListener("mouseover", ev => {
+        tooltip = new Tooltip(ev.target);
+      });
+      el.addEventListener("mouseout", () => {
+        tooltip.hide();
+      });
+    });
+    clearInterval(waitForElementsWithTooltip);
+  }
+}, 100);
