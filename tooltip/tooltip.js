@@ -63,9 +63,7 @@ const waitForElementsWithTooltip = setInterval(() => {
       el.addEventListener("mouseover", ev => {
         tooltip = new Tooltip(ev.target);
       });
-      el.addEventListener("mouseout", () => {
-        tooltip.hide();
-      });
+      el.addEventListener("mouseout", tooltip.hide);
     });
     clearInterval(waitForElementsWithTooltip);
   }
