@@ -1,0 +1,79 @@
+.widget-wrapper {
+  width: 300px;
+  border-radius: 5px;
+  border: 1px solid #ddd;
+}
+#stockIndicator {
+  display: none;
+  text-align: left;
+  padding: 10px;
+  margin: 5px;
+  color: red;
+}
+
+.ajaxtrigger:hover {
+  cursor: pointer;
+  cursor: hand;
+}
+
+#stock_miniQuote_head {
+  background-color: #333366;
+  color: #ffffff;
+  font-size: 1.3em;
+  font-family: "DINPro";
+  padding-bottom: 5px;
+  padding-left: 10px;
+  padding-right: 10px;
+  padding-top: 5px;
+  border-radius: 5px 5px 0 0;
+}
+
+#stock_miniQuote {
+  list-style-type: none;
+  margin-bottom: 10px;
+  padding-bottom: 0;
+  vertical-align: text-top;
+  height: 100%;
+}
+
+.stock_divider {
+  display: flex;
+  border-bottom: 1px solid #b2b0ad;
+  padding-bottom: 5px;
+}
+
+#stock_left {
+  padding: 0 20px;
+  border-right: 0.5px solid #b2b0ad;
+  flex: 1 50%;
+}
+
+#stock_right {
+  padding: 0 20px;
+  vertical-align: text-top;
+  flex: 1 50%;
+}
+
+.stock_label {
+  font-size: 14px;
+  display: inline-block;
+  width: 100%;
+}
+
+#stock_right .stock_label {
+  text-align: right;
+}
+
+.stock_strong {
+  font-size: 17px;
+}
+
+#stock_body {
+  padding: 10px 0 15px;
+}
+
+#stock_body_content {
+  float: left;
+  width: 170px;
+  padding: 0 15px;
+}

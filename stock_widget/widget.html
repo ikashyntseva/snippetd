@@ -1,0 +1,63 @@
+<!doctype html>
+
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+
+  <title>The Stock Widhet</title>
+  <meta name="description" content="The Stock Widhet">
+  <meta name="author" content="SitePoint">
+
+  <link rel="stylesheet" href="widget.css?v=1.0">
+
+</head>
+
+<body>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script type="text/javascript">
+      // This version has been tested to work in Jive 4.0.15 and 5.0. It should work in Jive 4.5 but has not been tested
+      // Add the stock symbol here
+        var yourStockSymbol = 'LIFE';
+        var $j = jQuery.noConflict();    
+    </script>
+    <script src="widget.js"></script>
+    <div class="widget-wrapper">
+        <div id="stock_miniQuote_head" class="ajaxtrigger">
+            <span id="stockSymbol"></span>&nbsp;Stock
+          </div>
+      
+          <div id="stock_miniQuote">
+            <div id="stockIndicator"><p>Retrieving stock information...</p></div>
+            <div class="stock_divider">
+              <div id="stock_left">
+                <span class="stock_label">Price</span><br/>
+                <strong class="stock_strong">$<span id="stockAsk"></span></strong><br/>
+              </div>
+              <div id="stock_right">
+                <span class="stock_label">Change</span><br/>
+                <strong class="stock_strong"><span id="stockChange"></span></strong><br />
+                <strong class="stock_strong"><span id="stockChangePercent"></span></strong><br />
+              </div>
+              <div style="clear: both;"></div>
+            </div>
+            <div id="stock_body">
+      
+              <div id="stock_body_content">
+                <span class="stock_label">Volume</span><br/>
+                <strong class="stock_strong"><span id="stockVolume"></span></strong>
+                
+                <br /><br />
+                <span class="stock_label">Average Daily Volume</span><br/>
+                <strong class="stock_strong"><span id="stockAvgVolume"></span></strong>
+                <br /><br />
+                <span class="stock_label">52 Week Range</span><br/>
+                <strong class="stock_strong"><span id="stockRange"></span></strong>	
+              </div>
+      
+              <div style="clear: both;"></div>
+      
+            </div>
+          </div>  
+    </div>
+</body>
+</html>
